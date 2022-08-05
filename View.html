@@ -1,0 +1,54 @@
+<!doctype html>
+ 
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+    <title>${title}</title>
+    <meta name="description" content="${description}" />
+    
+    
+  </head>
+  <body>
+    <script src="http://cdn.rawgit.com/phi-jp/phina.js/v0.2.0/build/phina.js"></script>
+    <script src="Script.js"></script>
+
+    <canvas id = "mycanvas"></canvas>
+    <h2>I am a html element</h2>
+
+    <script src="blockly_compressed.js"></script>
+    <script src="blocks_compressed.js"></script>
+    <script src="javascript_compressed.js"></script>
+    <script src="msg/js/en.js"></script>
+    <script src="block.js"></script>
+    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+    <button onclick="doCode()">コードの実行</button>
+    !-- ツールボックスの定義 -
+    <xml id="toolbox">
+      <block type="go_left"></block>
+      <block type="go_right"></block>
+      <block type="go_up"></block>
+      <block type="go_down"></block>
+    </xml>
+    <script>
+      //SBlocklyをdivにはめ込み
+      var workspace = Blockly.inject('blocklyDiv',
+          {toolbox: document.getElementById('toolbox')});
+
+      function doCode(){
+        //ブロックからプログラム（文字列）を作成
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        //プログラムを実行
+        try{
+          eval(code);
+        }
+        catch(e){
+          alert(e);
+        }
+      }
+    </script>
+  </body>
+</html>
+

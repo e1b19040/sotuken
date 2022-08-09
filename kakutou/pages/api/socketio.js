@@ -5,9 +5,12 @@ const ioHandler =  (req,res) => {
         console.log('*First use,starting socket.io')
 
         const io = new Server(res.socket.server)
+        const gameNS = io.of('/game');
 
-        io.on('connection',socket =>{
+
+        gameNS.on('connection',socket =>{
             console.log('connect')
+            socket.on('test',() => socket.emit("test"))
             socket.on('hello',msg =>{
                 socket.emit('hello','world!')
             })
@@ -16,7 +19,9 @@ const ioHandler =  (req,res) => {
             }
             )
         })
+        res.socket.server.io = gameNS;
     }
+    res.end();
 }
 
 export default ioHandler;

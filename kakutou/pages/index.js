@@ -1,33 +1,19 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import io from 'socket.io-client'
-import { useEffect } from 'react'
-let socket;
+import {DataContext} from '../DataContext'
+import {useContext} from 'react'
 
 
 export default function Home() {
-  useEffect(()=>{
-    socketTie();
-  },[])
-  const socketTie = async()=>{
-    await fetch('/api/socketio').finally(()=>{
-      socket = io()
-
-    socket.on('connect',()=>{
-      console.log('connect');  
-      socket.emit('hello');    
-    });
-
-    socket.on('hello',data => {
-      console.log('hello' + data);
-    })
-    })
-    
-  }
+  const context = useContext(DataContext);
+  const socket = context.socket;
+  const sousin = ()=> {socket.emit("test")};
   return(
     <>
     <h1>helloworld</h1>
+    <button onClick={()=>window.open("playgame")}>別ウィンドウ</button>
+    <button onClick={()=>{sousin()}}>送信イベント</button>
     </>
   )
 }

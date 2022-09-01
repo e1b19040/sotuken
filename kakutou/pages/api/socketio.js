@@ -10,7 +10,7 @@ const ioHandler =  (req,res) => {
 
         gameNS.on('connection',socket =>{
             console.log('connect')
-            socket.on('test',() => socket.emit("test"))
+            socket.on('test',(msg) => {socket.emit("test",msg);console.log("zyusin.ok")})
             socket.on('hello',msg =>{
                 socket.emit('hello','world!')
             })

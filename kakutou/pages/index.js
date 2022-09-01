@@ -1,19 +1,33 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import {DataContext} from '../DataContext'
-import {useContext} from 'react'
+import Link from "next/link"
+import { useRouter } from "next/router";
+import { useRef } from "react";
+/*import BlocklyComponent,{Block,Value,Field,Shadow} from "../component/Blockly"*/
+import blocklycss from "../styles/blockcss.module.css"
+import "../component/blocks/customblocks"
+import "../component/generator/generator"
+import blocklyjs from "blockly/javascript"
 
 
-export default function Home() {
-  const context = useContext(DataContext);
-  const socket = context.socket;
-  const sousin = ()=> {socket.emit("test")};
-  return(
+export default function Home(){
+  const router = useRouter()
+  /*const blocklyref = useRef()*/
+  /*return (
     <>
-    <h1>helloworld</h1>
-    <button onClick={()=>window.open("playgame")}>別ウィンドウ</button>
-    <button onClick={()=>{sousin()}}>送信イベント</button>
+    <BlocklyComponent ref={blocklyref} id={blocklycss.blocklyDiv} >
+      <Block type = "go_left"/>
+    </BlocklyComponent>
+    <button onClick={()=>{router.push(`window?block=${blocklyjs.workspaceToCode(blocklyref.current.workspace)}`)}}>
+    ブロック送信
+    </button>
+    </>
+  )*/
+
+  return (
+    <>
+    
+    <button onClick={()=>{router.push(`window?block=${'test'}`)}}>
+    ブロック送信
+    </button>
     </>
   )
 }

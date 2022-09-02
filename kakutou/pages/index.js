@@ -13,7 +13,7 @@ export default function Home(){
   const blocklyref = useRef()
   return (
     <>
-    <BlocklyComponent ref={blocklyref} id={blocklycss.blocklyDiv} >
+    <BlocklyComponent ref={blocklyref} id={blocklycss.blocklyDiv}>
       <Block type = "go_left"/>
     </BlocklyComponent>
     <button onClick={()=>{router.push(`window?block=${blocklyjs.workspaceToCode(blocklyref.current.workspace)}`)}}>

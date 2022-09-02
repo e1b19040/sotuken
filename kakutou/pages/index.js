@@ -12,6 +12,7 @@ export default function Home(){
   const router = useRouter()
   const blocklyref = useRef()
   return (
+    
     <>
     <BlocklyComponent ref={blocklyref} id={blocklycss.blocklyDiv}>
       <Block type = "go_left"/>
